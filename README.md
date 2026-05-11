@@ -1,1 +1,0 @@
-# fullstack-genai-interview-platform
