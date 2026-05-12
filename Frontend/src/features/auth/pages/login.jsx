@@ -6,10 +6,11 @@ import { useState } from "react";
 
 const login = () => {
   const { loading, handleLogin } = useAuth();
-  const nevigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const nevigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
