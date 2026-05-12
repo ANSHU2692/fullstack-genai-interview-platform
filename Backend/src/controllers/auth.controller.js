@@ -46,7 +46,13 @@ async function registerUserController(req, res) {
     },
   );
 
-  res.cookie("token", token);
+  // res.cookie("token", token);
+
+  res.cookie("token", token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "None",
+  });
 
   res.status(201).json({
     message: "User registred sucessfully",
@@ -90,7 +96,12 @@ async function loginUserController(req, res) {
     },
   );
 
-  res.cookie("token", token);
+  // res.cookie("token", token);
+  res.cookie("token", token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "None",
+  });
 
   res.status(200).json({
     message: "User loggedIn sucessfully",
@@ -115,7 +126,13 @@ async function logoutUserController(req, res) {
     await tokenBlacklistModel.create({ token });
   }
 
-  res.clearCookie("token");
+  // res.clearCookie("token");
+
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "None",
+  });
 
   res.status(200).json({
     message: "User logged out sucessfully",
@@ -135,7 +152,7 @@ async function getMeController(req, res) {
     message: "User detail fetch sucessfully",
     user: {
       id: user._id,
-      usermane: user.username,
+      username: user.username,
       email: user.email,
     },
   });
